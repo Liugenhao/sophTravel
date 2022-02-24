@@ -6,6 +6,7 @@
     <baidu-map 
       class="map" 
       :center="center"
+      :mapStyle="mapStyle"
       :zoom="zoom"
       :dragging="true"
       :scroll-wheel-zoom="true">
@@ -50,7 +51,7 @@
 <script>
 import {BmlHeatmap} from 'vue-baidu-map'
 import deflultData from '@/assets/js/markers.js'
-
+import styleJson from '@/assets/js/custom_map_config.json'
 export default {
   name:"ScenicFlow",
   components:{
@@ -64,6 +65,9 @@ export default {
       center:{
         lng:120.750865,
         lat:30.762653
+      },
+      mapStyle:{
+        styleJson:styleJson
       },
       flowsCount:null,
       flowsList:[
