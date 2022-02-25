@@ -25,10 +25,15 @@ const routes = [
   //   name: 'SpotWarning',
   //   component: () => import('../views/SpotWarning.vue')
   // },
+  // {
+  //   path: '/heatmap',
+  //   name: 'HeatMap',
+  //   component: () => import('../views/HeatMap.vue')
+  // },
   {
     path: '/',
-    name: 'HeatMap',
-    component: () => import('../views/HeatMap.vue')
+    name: 'HeatMap2',
+    component: () => import('../views/HeatMap2.vue')
   },
 ]
 
