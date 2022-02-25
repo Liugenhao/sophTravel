@@ -15,16 +15,21 @@ const routes = [
   //   name: 'ScenicFlow',
   //   component: () => import('../views/ScenicFlow.vue')
   // },
-  {
-    path: '/',
-    name: 'ScenicFlow2',
-    component: () => import('../views/ScenicFlow2.vue')
-  },
+  // {
+  //   path: '/',
+  //   name: 'ScenicFlow2',
+  //   component: () => import('../views/ScenicFlow2.vue')
+  // },
   // {
   //   path: '/spotwarning',
   //   name: 'SpotWarning',
   //   component: () => import('../views/SpotWarning.vue')
-  // }
+  // },
+  {
+    path: '/',
+    name: 'HeatMap',
+    component: () => import('../views/HeatMap.vue')
+  },
 ]
 
 const router = new VueRouter({

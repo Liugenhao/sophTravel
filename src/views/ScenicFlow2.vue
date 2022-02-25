@@ -1,77 +1,80 @@
 <template>
   <div class="wrapper">
-      <div class="amap-wrapper">
+      <div class="amap-wrapper" >
         <el-amap 
+          ref="map"
           class="amap-box" 
-          :vid="'amap-vue'" 
-          :resizeEnable="true"
+          vid="amap"
           :center="center"
-          :zoom="zoom">
+          :zoom="zoom"
+          :resizeEnable="true"
+          :events="mapEvents">
             <div
               v-for="(marker,index) in markers"
               :key="index">
               <el-amap-marker
+                ref="marker"
                 :position="marker.position"
+                :icon="dwIcon"
                 :events="marker.events">
                 
                 </el-amap-marker>
             </div>
-          
         </el-amap>
       </div>
   </div>
 </template>
 <script>
+import deflultData from '@/assets/js/marker2.js'
+import dwicon from '@/assets/img/jd.png'
 export default {
   name:"ScenicFlow2",
   data () {
     return {
       center:[120.76,30.77],
-      zoom:10,
-      markers:[
-        {
-          area:"南湖区",
-          position:[120.749953,30.764652],
+      zoom:11,
+      markers:null,
+      dwIcon:dwicon,
+      mapEvents:{
+        complete: () => {
+          this.$refs.map.$$getInstance().setFitView()
+        },
+        init(o) {
+          o.setMapStyle('amap://styles/blue')
+        },
+      }
+    }
+  },
+
+  mounted () {
+    this.initData ();
+  },
+  methods:{
+    initData () {
+      let markers = []
+      let self = this
+      deflultData.forEach(item => {
+        markers.push ({
+          area:item.area,
+          position:item.position,
           events:{
             click () {
-              console.log(11)
-              this.zoom = 12
+              self.$refs.map.$$getInstance().setZoom(16)
+              self.$refs.map.$$getInstance().setCenter(item.position)
             }
           }
-        },
-        {
-          area:"秀洲区",
-          position:[120.720431,30.763323]
-        },
-        {
-          area:"嘉善县",
-          position:[120.921871,30.841352]
-        },
-        {
-          area:"海盐县",
-          position:[120.942017,30.522223]
-        },
-        {
-          area:"海宁市",
-          position:[120.688821,30.525544]
-        },
-        {
-          area:"平湖市",
-          position:[121.014666,30.698921]
-        },
-        {
-          area:"桐乡市",
-          position:[120.551085,30.629065]
-        },
-      ]
+        })
+      });
+      this.markers = markers;
+      console.log(this.markers)
     }
   }
 }
 </script>
 <style lang="less" scoped>
   .amap-wrapper {
-    width: 600px;
-    height: 500px;
+    width: 830px;
+    height: 520px;
     margin:30px auto;
   }
 </style>
