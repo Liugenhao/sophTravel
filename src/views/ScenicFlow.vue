@@ -14,6 +14,7 @@
         <bm-marker 
           :position="{lng: marker.position.lng, lat: marker.position.lat}" 
           :dragging="true"
+          :icon="icon"
           @click="clickMarker(marker.area,marker.position.lng,marker.position.lat)">
         </bm-marker>
       </div>
@@ -52,6 +53,7 @@
 import {BmlHeatmap} from 'vue-baidu-map'
 import deflultData from '@/assets/js/markers.js'
 import styleJson from '@/assets/js/custom_map_config.json'
+import dwIcon from '@/assets/img/jd.png'
 export default {
   name:"ScenicFlow",
   components:{
@@ -60,11 +62,15 @@ export default {
   data () {
     return {
       markers:null,
-      zoom:10,
+      zoom:13,
       panelFlag:false,
       center:{
         lng:120.750865,
         lat:30.762653
+      },
+      icon:{
+        url:dwIcon,
+        size: {width:40, height: 40}
       },
       mapStyle:{
         styleJson:styleJson
@@ -162,12 +168,11 @@ export default {
 
 <style scoped>
   .map-container {
-    height: 600px;
-    padding: 20px;
+    min-height: 580px;
     position: relative;
   }
   .map {
-    height: 560px;
+    height: 580px;
     width: 100%;
   }
   .bd-panel {
@@ -181,4 +186,23 @@ export default {
   .bd-panel-item{
     color: #fff;
   }
+  ::-webkit-scrollbar 
+{ 
+  width: 6px; 
+  height: 6px; 
+  background-color: #253146; 
+} 
+::-webkit-scrollbar-track 
+{ 
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  background-color: #253146; 
+} 
+::-webkit-scrollbar-thumb 
+{ 
+  border-radius: 6px; 
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); 
+  background-color: #a5ffea; 
+}
 </style>

@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <Header />
+    <!--<Header />-->
     <router-view/>
   </div>
 </template>
 <script>
-import Header from './components/common/header.vue'
+//import Header from './components/common/header.vue'
 export default {
   name:"App",
   components:{
-   Header
+   //Header
   }
 }
 </script>
@@ -23,4 +23,9 @@ ul,ol{
   list-style: none;
 }
 a {text-decoration: none;}
+
+.BMap_cpyCtrl,
+.anchorBL{
+  display: none;
+}
 </style>

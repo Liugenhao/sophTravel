@@ -1,25 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+//import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: Home
+  // },
+  // {
+  //   path: '/',
+  //   name: 'ScenicFlow',
+  //   component: () => import('../views/ScenicFlow.vue')
+  // },
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'ScenicFlow2',
+    component: () => import('../views/ScenicFlow2.vue')
   },
-  {
-    path: '/scenicflow',
-    name: 'ScenicFlow',
-    component: () => import('../views/ScenicFlow.vue')
-  },
-  {
-    path: '/spotwarning',
-    name: 'SpotWarning',
-    component: () => import('../views/SpotWarning.vue')
-  }
+  // {
+  //   path: '/spotwarning',
+  //   name: 'SpotWarning',
+  //   component: () => import('../views/SpotWarning.vue')
+  // }
 ]
 
 const router = new VueRouter({

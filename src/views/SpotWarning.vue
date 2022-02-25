@@ -54,7 +54,8 @@ export default {
   data () {
     return {
       classOption:{
-        step: 0.3
+        //step: 0.3,
+        singleHeight: 199
       },
       jqlist:[
         {
@@ -166,18 +167,16 @@ export default {
       ]
     }
   },
-
 }
 </script>
 <style lang="less" scoped>
   .container {
     .warp{
-      height: 600px;
+      height: 590px;
       overflow: hidden;
     }
     .item {
       display: flex;
-      justify-content: center;
       flex-direction: column;
       position: relative;
       height: 184px;
@@ -189,16 +188,17 @@ export default {
       background-repeat: no-repeat;
       overflow: hidden;
       .item-header {
-        padding-bottom: 15px;
+        padding-bottom: 35px;
         color: #fff;
         z-index: 10;
+
       }
       .item-content {
         z-index: 10;
       }
       .title {
         letter-spacing: 1px;
-        text-shadow: 1px 1px 3px #ef9817;
+        text-shadow: 1px 1px 3px #f8a221;
         font-size: 22px;
         .warning {
           float: right;
@@ -208,10 +208,10 @@ export default {
           border-radius: 2px;
         }
         .sooth {
-          background-color: rgb(17, 238, 146);
+          background-color: rgb(26, 209, 133);
         }
         .general {
-          background-color: rgb(62, 240, 225);
+          background-color: #2ebeb2;
         }
         .full {
           background-color: #eb4e4e;
@@ -221,8 +221,9 @@ export default {
         border-radius: 2px;
         padding:2px 4px;
         line-height: 24px;
+        border-radius: 2px;
         display: inline-block;
-        background-color: #eb9722;
+        background-color: #d8830d;
       }
       .list {
         li {
@@ -234,9 +235,9 @@ export default {
           }
         }
         .numbers {
-          padding-bottom: 20px;
+          padding-bottom: 30px;
           span {
-            color: #db9d45;
+            color: #f5a22f;
             font-weight: 600;
             font-size: 19px;
           }
@@ -254,7 +255,7 @@ export default {
         left: 0;
         top: 0;
         z-index: 1;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.3);
       }
     }
   }
