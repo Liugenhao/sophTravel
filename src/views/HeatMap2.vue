@@ -17,7 +17,6 @@ export default {
   name:"HeatMap2",
   data () {
     return {
-      amap: {},
       data: [
         {lng: 120.718261, lat: 30.71984, value: 200},
         {lng: 120.793332, lat: 30.76532, value: 51},
@@ -41,6 +40,7 @@ export default {
     }
   },
   mounted(){
+   
     this.initMap()
   },
   methods:{
@@ -52,6 +52,7 @@ export default {
         zoom: 12   //缩放比例
       })
       map.setMapStyle('amap://styles/darkblue')  
+      //map.setMapStyle('amap://styles/ea39984c004755ab600f2aecd4ef748b')
       //热力图
       let heatmap
       //使用插件
@@ -81,13 +82,14 @@ export default {
     getPolygon(map) {
       let dongchengJson = require('@/map/jxmap.json')   
       var path = dongchengJson.features[0].geometry.coordinates[0]
+      console.log(path)
       var polygon = new AMap.Polygon({
         path: path,                  //路径
         strokeColor: '#1EE621',      //轮廓线颜色
         strokeWeight: 2,             //轮廓线宽度
         strokeOpacity: 0.2,           //轮廓线透明度
-        fillOpacity: 0.1,              //矩形内部填充颜色透明度
-        fillColor: '#fff',             //矩形 内部填充颜色透明度
+        fillOpacity: 0.5,              //矩形内部填充颜色透明度
+        fillColor: '#00203D',             //矩形 内部填充颜色透明度
         zIndex: 50                    //多边形覆盖物的叠加顺序。地图上存在多个多边形覆盖物叠加时，通过该属性使级别较高的多边形覆盖物在上层显示
       })
       map.add(polygon)  //添加到地图上
