@@ -47,7 +47,7 @@ export default {
     initMap() {
       var that = this
       let map = new AMap.Map('appMap', {
-        resizeEnable: false,   //调整大小启用
+        resizeEnable: true,   //调整大小启用
         center: [120.749953, 30.764652],    //初始化成功后的中心点
         zoom: 12   //缩放比例
       })
@@ -78,11 +78,11 @@ export default {
       //绘制矩形
       this.getPolygon(map)
     },
-     //地图轮廓
+    //地图轮廓
     getPolygon(map) {
       let dongchengJson = require('@/map/jxmap.json')   
       var path = dongchengJson.features[0].geometry.coordinates[0]
-      console.log(path)
+      //console.log(path)
       var polygon = new AMap.Polygon({
         path: path,                  //路径
         strokeColor: '#1EE621',      //轮廓线颜色
@@ -106,4 +106,5 @@ export default {
       height: 100%;
     }
   }
+ 
 </style>

@@ -53,7 +53,7 @@
 import {BmlHeatmap} from 'vue-baidu-map'
 import deflultData from '@/assets/js/markers.js'
 import styleJson from '@/assets/js/custom_map_config.json'
-import dwIcon from '@/assets/img/jd.png'
+import dwIcon from '@/assets/img/dw.png'
 export default {
   name:"ScenicFlow",
   components:{

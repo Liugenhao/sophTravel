@@ -28,4 +28,11 @@ a {text-decoration: none;}
 .anchorBL{
   display: none;
 }
+ .amap-logo {
+    display: none;
+    opacity: 0 !important;
+  }
+  .amap-copyright {
+    opacity: 0;
+  }
 </style>
