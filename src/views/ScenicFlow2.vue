@@ -20,6 +20,7 @@ export default {
       center:[120.76,30.77],
       zoom:9,
       map:null,
+      heatmap:null,
       backFlag:false
     }
   },
@@ -29,9 +30,10 @@ export default {
   methods:{
     backMap () {
       this.backFlag = false;
+      //返回时热力图数据设为空
+      this.heatmap.setDataSet({data:[]})
       this.map.setZoom(this.zoom)
       this.map.setCenter(this.center)
-      console.log(1)
     },
     initData () {
       let _this = this;
@@ -42,7 +44,7 @@ export default {
       })
 
       //主题
-      //map.setMapStyle('amap://styles/darkblue') 
+      //_this.map.setMapStyle('amap://styles/darkblue') 
       _this.map.setMapStyle('amap://styles/88f11672c29e73fef4ee6eac1c6f39e8') 
       // 创建 AMap.Icon 实例：
       var icon = new AMap.Icon({
@@ -66,6 +68,7 @@ export default {
           _this.backFlag = true;
           _this.map.setZoom(14)
           _this.map.setCenter(deflultData[i].position)
+          //地图上添加热力图
           _this.heatmapFun(_this.map,deflultData[i].data)
           //_this.getPolygon(map,i) //没有数据暂时注释
         })
@@ -73,25 +76,26 @@ export default {
       
     },
     heatmapFun (map,data) {
-      let heatmap
+      let _this = this;
       //使用插件
       map.plugin(['AMap.Heatmap'], function() {
         //初始化heatmap对象
-        heatmap = new AMap.Heatmap(map, {
+        _this.heatmap = new AMap.Heatmap(map, {
+          visible:_this.backFlag,
           radius: 20, //给定半径
           opacity: [0.2, 1.0],
           // 颜色范围
-          color: {
-            0.45: 'rgb(255,0,0)',
-            0.55: 'rgb(255,0,0)',
-            0.65: 'rgb(255,0,0)',
-            0.95: 'rgb(255,0,0)',
-          }
+          // color: {
+          //   0.45: 'rgb(255,0,0)',
+          //   0.55: 'rgb(255,0,0)',
+          //   0.65: 'rgb(255,0,0)',
+          //   0.95: 'rgb(255,0,0)',
+          // }
         })
          //设置数据集
-        heatmap.setDataSet({
+        _this.heatmap.setDataSet({
           data: data,   //坐标数据集  即之前请求到的热力图数据
-          max: 1    //权重的最大值  max不填则取数据集count最大值 (该值影响热力图颜色)
+          max: 1   //权重的最大值  max不填则取数据集count最大值 (该值影响热力图颜色)
         })
       })
       
