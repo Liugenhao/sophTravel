@@ -22,17 +22,14 @@
             </div>
             <div class="item-content">
               <ul class="list">
-                <li class="numbers">
-                  <span 
-                    v-for="(subitem,index) in item.datas" 
-                    :key="index">
-                    {{subitem}}
-                  </span>
-                </li>
-                <li class="text">
-                  <span>当前小时客流量（人）</span>
-                  <span>瞬时承载量（万人）</span>
-                  <span>最大承载量（万人）</span>
+                <li 
+                  class="list-item"  
+                  v-for="(subitem,index) in item.datas" 
+                  :key="index" >
+                  <p class="count">
+                    {{subitem.count}}
+                  </p>
+                  <p class="text">{{subitem.text}}</p>
                 </li>
               </ul>
             </div>
@@ -54,7 +51,7 @@ export default {
   data () {
     return {
       classOption:{
-        //step: 0.3,
+        //step:0.4,
         singleHeight: 199
       },
       jqlist:[
@@ -63,107 +60,241 @@ export default {
           star:5,
           imgurl:img,
           fcwnum:30,
-          datas:[1123,4.02,53.32]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"梅花洲景区",
           star:4,
           imgurl:img,
           fcwnum:60,
-          datas:[41,5.67,2.5]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"歌斐颂巧克力小镇",
           star:3,
           imgurl:img,
           fcwnum:90,
-          datas:[54,1,2.3]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"南湖景区",
           star:5,
           imgurl:img,
           fcwnum:30,
-          datas:[1123,4.02,53.32]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"梅花洲景区",
           star:4,
           imgurl:img,
           fcwnum:60,
-          datas:[41,5.67,2.5]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"歌斐颂巧克力小镇",
           star:3,
           imgurl:img,
           fcwnum:90,
-          datas:[54,1,2.3]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"南湖景区",
           star:5,
           imgurl:img,
           fcwnum:30,
-          datas:[1123,4.02,53.32]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"梅花洲景区",
           star:4,
           imgurl:img,
           fcwnum:60,
-          datas:[41,5.67,2.5]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"歌斐颂巧克力小镇",
           star:3,
           imgurl:img,
           fcwnum:90,
-          datas:[54,1,2.3]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"南湖景区",
           star:5,
           imgurl:img,
           fcwnum:30,
-          datas:[1123,4.02,53.32]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"梅花洲景区",
           star:4,
           imgurl:img,
           fcwnum:60,
-          datas:[41,5.67,2.5]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"歌斐颂巧克力小镇",
           star:3,
           imgurl:img,
           fcwnum:90,
-          datas:[54,1,2.3]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"南湖景区",
           star:5,
           imgurl:img,
           fcwnum:30,
-          datas:[1123,4.02,53.32]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"梅花洲景区",
           star:4,
           imgurl:img,
           fcwnum:60,
-          datas:[41,5.67,2.5]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
         {
           name:"歌斐颂巧克力小镇",
           star:3,
           imgurl:img,
           fcwnum:90,
-          datas:[54,1,2.3]
+          datas:[{
+            "text":"当前小时客流量（人）",
+            "count":"1242",
+          },{
+            "text":"瞬时承载量（万人）",
+            "count":"1",
+          },{
+            "text":"最大承载量（万人）",
+            "count":"1.4",
+          }]
         },
-  
       ]
     }
   },
@@ -226,26 +357,20 @@ export default {
         background-color: #d8830d;
       }
       .list {
-        li {
-          display: flex;
-          span {
-            flex: 0 0 33.33%;
-            text-align: center;
-            
-          }
-        }
-        .numbers {
-          padding-bottom: 30px;
-          span {
+        display: flex;
+        flex-direction: row;
+        .list-item {
+          flex: 0 0 33.33%;
+          text-align: center;
+          .count {
+            padding-bottom: 30px;
             color: #f5a22f;
             font-weight: 600;
             font-size: 19px;
           }
         }
         .text {
-          span {
-            font-size: 14px;
-          }
+          font-size: 14px;
         }
       }
       .bg {
