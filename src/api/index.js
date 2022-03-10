@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-// 人员分析
-export function getTest(query) {
+// GET TEST
+export function getklWarning(query) {
   return request({
-    url: '/get/test',
+    url: '/cityScenicSpotFlow/passengerFlowWarning',
     method: 'get',
     params: query
   })

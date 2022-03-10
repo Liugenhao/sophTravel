@@ -7,7 +7,6 @@
         vid="amap"
         :center="center"
         :zoom="zoom"
-        :plugin="plugins"
         :resizeEnable="true"
         :events="mapEvents">
           <div
@@ -61,6 +60,7 @@ export default {
           position:item.position,
           events:{
             click () {
+              console.log(item.position)
               self.$refs.map.$$getInstance().setZoom(16)
               self.$refs.map.$$getInstance().setCenter(item.position)
             }

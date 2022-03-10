@@ -1,18 +1,19 @@
 <template>
   <el-row class="container">
     <el-col :span="24">
-      <vue-seamless-scroll 
-        :data="jqlist" 
+      <vue-seamless-scroll
+        ref="seamlessScroll"
+        :data="dataLists"
         :class-option="classOption"
         class="warp">
         <div
-          v-for="(item,i) in jqlist"
+          v-for="(item,i) in dataLists"
           :key="i">
           <div 
             class="item" 
             :style="{'background-image': 'url('+item.imgurl+')'}">
             <div class="item-header">
-              <h4 class="title"> 
+              <h4 class="title">
                 {{item.name}}
                 <span class="star">{{item.star}}A</span>
                 <span v-if="item.fcwnum<30 || item.fcwnum==30" class="warning sooth">舒适</span>
@@ -22,14 +23,15 @@
             </div>
             <div class="item-content">
               <ul class="list">
-                <li 
+                <li
                   class="list-item"  
-                  v-for="(subitem,index) in item.datas" 
+                  v-for="(subitem,index) in item.warningInfoVo" 
                   :key="index" >
                   <p class="count">
                     {{subitem.count}}
                   </p>
-                  <p class="text">{{subitem.text}}</p>
+                  <p class="text" v-if="index == 0">{{subitem.text}}<br />（人）</p>
+                  <p class="text" v-else>{{subitem.text}}<br />（万人）</p>
                 </li>
               </ul>
             </div>
@@ -41,8 +43,8 @@
   </el-row>
 </template>
 <script>
-import img from '@/assets/img/mhz.jpg'
 import vueSeamlessScroll from 'vue-seamless-scroll'
+import { getklWarning } from '@/api/index.js'
 export default {
   name:"SpotWarning",
   components:{
@@ -50,254 +52,40 @@ export default {
   },
   data () {
     return {
-      classOption:{
-        //step:0.4,
-        singleHeight: 199
-      },
-      jqlist:[
-        {
-          name:"南湖景区",
-          star:5,
-          imgurl:img,
-          fcwnum:30,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"梅花洲景区",
-          star:4,
-          imgurl:img,
-          fcwnum:60,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"歌斐颂巧克力小镇",
-          star:3,
-          imgurl:img,
-          fcwnum:90,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"南湖景区",
-          star:5,
-          imgurl:img,
-          fcwnum:30,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"梅花洲景区",
-          star:4,
-          imgurl:img,
-          fcwnum:60,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"歌斐颂巧克力小镇",
-          star:3,
-          imgurl:img,
-          fcwnum:90,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"南湖景区",
-          star:5,
-          imgurl:img,
-          fcwnum:30,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"梅花洲景区",
-          star:4,
-          imgurl:img,
-          fcwnum:60,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"歌斐颂巧克力小镇",
-          star:3,
-          imgurl:img,
-          fcwnum:90,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"南湖景区",
-          star:5,
-          imgurl:img,
-          fcwnum:30,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"梅花洲景区",
-          star:4,
-          imgurl:img,
-          fcwnum:60,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"歌斐颂巧克力小镇",
-          star:3,
-          imgurl:img,
-          fcwnum:90,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"南湖景区",
-          star:5,
-          imgurl:img,
-          fcwnum:30,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"梅花洲景区",
-          star:4,
-          imgurl:img,
-          fcwnum:60,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-        {
-          name:"歌斐颂巧克力小镇",
-          star:3,
-          imgurl:img,
-          fcwnum:90,
-          datas:[{
-            "text":"当前小时客流量（人）",
-            "count":"1242",
-          },{
-            "text":"瞬时承载量（万人）",
-            "count":"1",
-          },{
-            "text":"最大承载量（万人）",
-            "count":"1.4",
-          }]
-        },
-      ]
+      dataLists:[],
     }
   },
+  computed:{
+    classOption(){
+      return {
+        //step:5,
+        singleHeight: 199,
+        openWacth:true,
+        limitMoveNum:this.dataLists.length
+      }
+    },
+  },
+  watch :{
+    dataLists:function(val){
+      //console.log(val)
+      this.dataLists = val;
+    }
+  },
+  mounted() {
+    this.ininData()
+  },
+  methods:{
+    ininData () {
+        getklWarning().then(res => {
+        //console.log(res)
+        res.forEach((val) => {
+          this.dataLists.push(val)
+        });
+        //console.log(this.dataLists)
+        this.$refs.seamlessScroll.reset()
+      })
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
@@ -322,7 +110,6 @@ export default {
         padding-bottom: 35px;
         color: #fff;
         z-index: 10;
-
       }
       .item-content {
         z-index: 10;
@@ -350,9 +137,10 @@ export default {
       }
       .star {
         border-radius: 2px;
-        padding:2px 4px;
+        padding:1px 4px;
         line-height: 24px;
         border-radius: 2px;
+        font-size:18px;
         display: inline-block;
         background-color: #d8830d;
       }
@@ -370,7 +158,7 @@ export default {
           }
         }
         .text {
-          font-size: 14px;
+          font-size: 16px;
         }
       }
       .bg {

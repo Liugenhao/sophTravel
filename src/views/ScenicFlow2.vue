@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       center:[120.76,30.77],
-      zoom:9,
+      zoom:10,
       map:null,
       heatmap:null,
       backFlag:false
@@ -66,7 +66,7 @@ export default {
         _this.map.add(marker);
         marker.on('click',function(){
           _this.backFlag = true;
-          _this.map.setZoom(14)
+          _this.map.setZoom(15)
           _this.map.setCenter(deflultData[i].position)
           //地图上添加热力图
           _this.heatmapFun(_this.map,deflultData[i].data)
@@ -95,16 +95,16 @@ export default {
          //设置数据集
         _this.heatmap.setDataSet({
           data: data,   //坐标数据集  即之前请求到的热力图数据
-          max: 1   //权重的最大值  max不填则取数据集count最大值 (该值影响热力图颜色)
+          //max: 100   //权重的最大值  max不填则取数据集count最大值 (该值影响热力图颜色)
         })
       })
       
     },
      //地图轮廓
     getPolygon(map,index) {
-      console.log(index)
+      //console.log(index)
       let dongchengJson = require('@/map/jxmap.json')  
-      console.log(dongchengJson) 
+      //console.log(dongchengJson) 
       let path = dongchengJson.features[index].geometry.coordinates[0]
       //console.log(path)
       var polygon = new AMap.Polygon({
@@ -130,13 +130,12 @@ export default {
       left: 10px;
       z-index: 999;
       opacity: 0.9;
-      background: #1f4583;
-      border-color: #909399;
+      background: #2578ff;
+      border-color: #2578ff;
+      color: #fff;
     }
     .amap-wrapper {
       height:550px;
     }
   }
-  
-
 </style>
